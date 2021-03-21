@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 text-center" id="top-bar">
-            <img src="public\assets\images\Burgers9.jpg" alt="burger" />
+            <img src="/assets/images/Burgers9.jpg" alt="burger" width = "200px"/>
             <h1> Eat-Da-Burger! </h1>
         </div>
         <div class="col-md-6 text-center" class="task">
@@ -14,10 +14,7 @@
                     <!-- {{this.Date}} -->
                 </div>
                 <div class="col-md-3 text-center">
-                    <form class="devour-form button-size">
-                        <input input type="hidden" class="burger_id" type="text" value={{this.id}}><br>
-                        <button type="submit" class="btn btn-default">Devour it!</button>
-                    </form>
+                    <button type="submit" class="btn btn-default" value={{this.id}}>Devour it!</button>
                 </div>
                 {{/unless}}
                 {{/each}}
@@ -36,8 +33,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 text-center enter_section">
-            <form action="/burgers/create" method="POST">
-                <input type="text" class="form-control" name="burger_name" value="" id="enter_text">
+            <form>
+                <input type="text" class="form-control devour-form" name="burger_name" value="" id="enter_text">
                 <button type="submit" class="btn btn-primary" id="text-enter-button">Submit</button>
             </form>
             <p>Enter a burger you want to eat Click the "Submit" button.</p>

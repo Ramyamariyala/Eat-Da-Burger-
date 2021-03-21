@@ -35,15 +35,15 @@ var orm = {
         });
     },
 
-    InsertOne: function (table, cols, vals, cb){
-        var queryString = "INSERT INTO" + table;
-
-        queryString += "(" ;
+    insertOne: function (table, cols, vals, cb){
+        var queryString = " INSERT INTO " + table;
+       // "INSERT INTO burgers (burger_name, devoured) VALUES ('chicken burger', true)"
+        queryString += " ( " ;
         queryString += cols.toString();
-        queryString += ")" ;
-        queryString += "VALUES (" ;
+        queryString += " ) " ;
+        queryString += " VALUES ( " ;
         queryString += printQuestionMarks(vals.length); ;
-        queryString += ")" ;
+        queryString += " ) " ;
 
         console.log(queryString);
 
@@ -55,10 +55,10 @@ var orm = {
         });
     },
 
-    updateOne: function (table, odjColVals, condition, cb){
+    updateOne: function (table, objColVals, condition, cb){
         var queryString = "UPDATE" + table;
         queryString += "SET" ;
-        queryString += "objToSql(objColVals)" ;
+        queryString += objToSql(objColVals);
         queryString += "WHERE" ;
         queryString += condition;
 
