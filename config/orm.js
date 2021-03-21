@@ -8,26 +8,34 @@ function printQuestionMarks(num) {
     return arr.toString();
 }
 
-function objToSql(ob) {
+function objToSql(ob){
     var arr = [];
-    for (var key in ob){
-        applicationCache.push(key + "=" + ob[key]);
+
+for (var key in ob) {
+    var value = ob[key];
+    if (Object.hasOwnProperty.call(ob, key)) {
+      if (typeof value === "string" && value.indexOf(" ") >= 0) {
+        value = "'" + value + "'";
+      }
+      arr.push(key + "=" + value);
     }
-    return arr.toString();
+  }
+  return arr.toString();
 }
 
+
 var orm = {
-    all:function (tableInput, cd){
+    selectAll:function (tableInput, cb){
         var queryString = "SELECT * FROM " + tableInput + ";"
-        connectuon.query(queryString, function (err, result) {
+        connection.query(queryString, function (err, result) {
             if(err) {
                 throw err;
             }
-            cd (result);
+            cb (result);
         });
     },
 
-    create: function (table, cols, vals, cd){
+    InsertOne: function (table, cols, vals, cb){
         var queryString = "INSERT INTO" + table;
 
         queryString += "(" ;
@@ -47,7 +55,7 @@ var orm = {
         });
     },
 
-    update: function (table, odjColVals, condition, cb){
+    updateOne: function (table, odjColVals, condition, cb){
         var queryString = "UPDATE" + table;
         queryString += "SET" ;
         queryString += "objToSql(objColVals)" ;
@@ -59,7 +67,7 @@ var orm = {
             if(err) {
                 throw err;
             }
-            cd(result);
+            cb(result);
         });
     }
 };
