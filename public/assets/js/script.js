@@ -1,18 +1,30 @@
 
 $(document).ready(function () {
 
-    // $(".devour-form").on("submit", function (event) {
-    //     event.preventDefault();
+    $(".devour-form").on("submit", function (event) {
+        event.preventDefault();
+         let id = $(this).data("id");
+         console.log(id);
+         
+        let devouredBurger = $(this).data("devouredBurger").val();
 
-    //     var burger_id = $(this).children(".burger_id").val();
-    //     console.log(burger_id);
-    //     $.ajax({
-    //         method: "PUT",
-    //         url: "/api/burgers/" + burger_id
-    //     }).then(function (data) {
-    //         // reload page to display devoured burger in proper column
-    //         location.reload();
-    //     });
+        if(devouredBurger === 1){
+            devouredBurger = 0;
+        } else {
+            devouredBurger = 1;
+        }
+        let devouredState ={
+            devoured: devouredBurger,
+        };
+
+        $.ajax( "/api/burgers/", + id, {
+            type: "PUT",
+            data: devouredState,
+        }).then(function () {
+            console.log("Burger devoured!")
+            location.reload();
+        });
+    });
 
 
 
@@ -33,3 +45,4 @@ $("#text-enter-button").on("click",function(event){
 });  
     });
 });
+
