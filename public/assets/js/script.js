@@ -1,12 +1,12 @@
 
 $(document).ready(function () {
 
-    $(".devour-form").on("submit", function (event) {
+    $(".devour-btn").on("click", function (event) {
         event.preventDefault();
-         let id = $(this).data("id");
+         let id = $(this).attr("value");
          console.log(id);
          
-        let devouredBurger = $(this).data("devouredBurger").val();
+        let devouredBurger = $(this).attr("data-devoured");
 
         if(devouredBurger === 1){
             devouredBurger = 0;
@@ -17,7 +17,7 @@ $(document).ready(function () {
             devoured: devouredBurger,
         };
 
-        $.ajax( "/api/burgers/", + id, {
+        $.ajax( "/api/burgers/" + id, {
             type: "PUT",
             data: devouredState,
         }).then(function () {
