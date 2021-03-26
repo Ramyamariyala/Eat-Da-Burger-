@@ -3,9 +3,11 @@ var mysql = require("mysql");
 var connection;
 
 if(process.env.JAWSDB_URL){
+  console.log(process.env)
   connection = mysql.createConnection(process.env.JAWSDB_URL);
 }
 else{
+  console.log("connecting locally");
   connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
