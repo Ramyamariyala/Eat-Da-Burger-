@@ -48,4 +48,4 @@ MIT
 - [Github](https://github.com/Ramyamariyala/Eat-Da-Burger-.git)
 
 # Heroku link
-![Heroku](https://agile-sea-86521.herokuapp.com/)
+[Heroku](https://agile-sea-86521.herokuapp.com/)
